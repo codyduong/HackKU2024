@@ -1,5 +1,6 @@
 'use client';
 
+import Button from '@/components/Button';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -84,16 +85,6 @@ const Info = styled.input`
   height: 25px;
   padding: 10px;
   border: 1px solid white;
-  cursor: pointer;
-`;
-
-const Button = styled.button`
-  color: #9cc599;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid #9cc599;
-  border-radius: 3px;
   cursor: pointer;
 `;
 
