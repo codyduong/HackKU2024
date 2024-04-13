@@ -9,7 +9,7 @@ const MainPage = (): JSX.Element => {
 
   return (
     <PageWrapper>
-      <h1> Welcome to Next.js!</h1>
+      <h1> I am currently testing.</h1>
 
       {session ? (
         <>
