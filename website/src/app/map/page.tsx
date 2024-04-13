@@ -11,12 +11,12 @@ import {
 } from '@vis.gl/react-google-maps';
 import styled from 'styled-components';
 import dark from './dark';
-import clientPromise from '@/lib/db';
 import { useState, useRef, useEffect } from 'react';
 import { MarkerClusterer } from '@googlemaps/markerclusterer';
 import type { Marker } from '@googlemaps/markerclusterer';
 import useSWR from 'swr';
 import { Events } from '@/types/events';
+import Sidebar from '@/components/Sidebar';
 
 // just a component to mount styling
 const SetMapStyle = (): null => {
@@ -110,7 +110,8 @@ const Markers = (props: MarkersProps): JSX.Element => {
   );
 };
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+// @ts-expect-error: blah
+const fetcher = (...args): any => fetch(...args).then((res) => res.json());
 
 const MapWrapper = styled.div`
   width: 100%;
@@ -134,7 +135,8 @@ const MapPage = (): JSX.Element => {
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
   return (
-    <PageWrapper padContent={false}>
+    <PageWrapper padContent={false} map>
+      <Sidebar />
       <MapWrapper>
         <Map
           mapId={'f4bfb03ea9696921'}
@@ -147,7 +149,10 @@ const MapPage = (): JSX.Element => {
           // styles={dark}
         >
           <SetMapStyle />
-          <Markers events={data as any} setSelectedEvents={setSelectedEvents} />
+          <Markers
+            events={data as Events}
+            setSelectedEvents={setSelectedEvents}
+          />
         </Map>
       </MapWrapper>
     </PageWrapper>

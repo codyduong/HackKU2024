@@ -29,13 +29,14 @@ const PageMain = styled.main`
 interface PageProps {
   children: React.ReactNode;
   padContent?: boolean;
+  map?: boolean;
 }
 
 const PageWrapper = (props: PageProps): JSX.Element => {
-  const { children, padContent = true } = props;
+  const { children, padContent = true, map = false } = props;
   return (
     <PageBase>
-      <Navbar />
+      <Navbar map={map} />
       {padContent ? (
         <PageContent>
           <PageMain>{children}</PageMain>
