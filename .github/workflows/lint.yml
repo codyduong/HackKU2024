@@ -31,4 +31,6 @@ jobs:
         cache: 'yarn'
         cache-dependency-path: 'yarn.lock'
     - run: yarn ci
+    - name: Set script permissions
+      run: chmod +x ./scripts/lint.sh
     - run: yarn lint:changed
