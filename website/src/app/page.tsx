@@ -1,13 +1,14 @@
 'use client';
 
+import PageWrapper from '@/components/PageWrapper';
 import { signOut, signIn, useSession } from 'next-auth/react';
 import styled from 'styled-components';
 
-const Page = (): JSX.Element => {
+const MainPage = (): JSX.Element => {
   const { data: session } = useSession();
 
   return (
-    <div className="space-y-4">
+    <PageWrapper>
       <h1> Welcome to Next.js!</h1>
 
       {session ? (
@@ -33,8 +34,8 @@ const Page = (): JSX.Element => {
           </button>
         </>
       )}
-    </div>
+    </PageWrapper>
   );
 };
 
-export default Page;
+export default MainPage;

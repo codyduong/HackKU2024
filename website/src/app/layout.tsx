@@ -3,6 +3,7 @@ import { Atkinson_Hyperlegible } from 'next/font/google';
 import './globals.css';
 import StyledComponentsRegistry from './registry';
 import SessionWrapper from './session';
+import { Providers } from './providers';
 
 const atkin = Atkinson_Hyperlegible({ subsets: ['latin'], weight: '400' });
 
@@ -20,7 +21,9 @@ export default function RootLayout({
     <SessionWrapper>
       <StyledComponentsRegistry>
         <html lang="en">
-          <body className={atkin.className}>{children}</body>
+          <body className={atkin.className}>
+            <Providers>{children}</Providers>
+          </body>
         </html>
       </StyledComponentsRegistry>
     </SessionWrapper>
