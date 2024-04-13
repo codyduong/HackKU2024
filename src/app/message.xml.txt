@@ -1,0 +1,502 @@
+{
+  "docs": {
+    "count": 55,
+    "docs": [
+      {
+        "_id": "6611603b4ce7d39ef5eabd16",
+        "location": "Lawrence Arts Center",
+        "date": "2024-04-13T04:59:59.000Z",
+        "startDate": "2024-04-12T05:00:00.000Z",
+        "endDate": "2024-04-13T04:59:59.000Z",
+        "recurType": 0,
+        "latitude": 38.9654625,
+        "longitude": -95.235711,
+        "media_raw": [
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/Screen-Shot-2024-01-22-at-1.11.54-PM_4E361E61-6EC3-4106-A87904BCC46774EE_af71cc13-f879-4a0f-b3727ccaf5658a18.png",
+            "sortorder": 1,
+            "mediatype": "Image"
+          }
+        ],
+        "recid": "31967",
+        "title": "Free State Story Slam | Striking Gold",
+        "url": "/event/free-state-story-slam-%7c-striking-gold/31967/",
+        "categories": [
+          {
+            "catName": "Performance",
+            "catId": "14"
+          }
+        ],
+        "listing": {
+          "primary_category": {
+            "primary": true,
+            "subcatid": 116,
+            "subcatname": "Performing Arts & Theater",
+            "catname": "Arts & Entertainment",
+            "catid": 24
+          },
+          "title": "10th & Mass Studios",
+          "url": "/listing/10th-%26-mass-studios/7338/"
+        }
+      },
+      {
+        "_id": "6618bcb44ce7d39ef5a74d7e",
+        "location": "Lucia Beer Garden + Grill",
+        "date": "2024-04-13T04:59:59.000Z",
+        "startDate": "2024-04-12T05:00:00.000Z",
+        "endDate": "2024-04-13T04:59:59.000Z",
+        "recurType": 0,
+        "latitude": 38.9649513,
+        "longitude": -95.2355384,
+        "media_raw": [
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/moonshroom_4071511F-ACD3-052A-ECFF06C3221FB18C_4082e691-c518-81cd-323305ae924dff21.jpg",
+            "sortorder": 1,
+            "mediatype": "Image"
+          }
+        ],
+        "recid": "32308",
+        "title": "Kaw River Roots Presents: MoonShroom and The Midland Band",
+        "url": "/event/kaw-river-roots-presents%3a-moonshroom-and-the-midland-band/32308/",
+        "categories": [
+          {
+            "catName": "Music",
+            "catId": "11"
+          }
+        ],
+        "listing": {
+          "primary_category": {
+            "primary": true,
+            "subcatid": 31,
+            "subcatname": "Bar & Grill",
+            "catname": "Dining",
+            "catid": 3
+          },
+          "title": "Lucia Beer Garden + Grill",
+          "url": "/listing/lucia-beer-garden-%2b-grill/3261/"
+        }
+      },
+      {
+        "_id": "661805b34ce7d39ef5d6df18",
+        "location": "Jayhawk Tennis Center",
+        "date": "2024-04-13T04:59:59.000Z",
+        "startDate": "2024-04-12T05:00:00.000Z",
+        "endDate": "2024-04-13T04:59:59.000Z",
+        "recurType": 0,
+        "latitude": 38.9792922,
+        "longitude": -95.3298068,
+        "media_raw": [
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/Jayhawk-logo_89716BB3-B9D6-E7C8-61ED2D1DF19701CB_8971dd0d-f4a8-cd6f-b5e8c91347f3c5e1.png",
+            "sortorder": 1,
+            "mediatype": "Image"
+          },
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/20230421_WTEN_IowaState_EGP-12_A785B0F2-F947-4452-85B8B208E519900E_2e30936c-9654-4131-9167065275a1a5c2.jpg",
+            "sortorder": 2,
+            "mediatype": "Image"
+          },
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/image0_9B704033-9027-4A01-BFCCED1B25BD3E82_6d213c7b-7a8a-43b3-bc335fc6cd70902b.jpg",
+            "sortorder": 3,
+            "mediatype": "Image"
+          }
+        ],
+        "recid": "31881",
+        "title": "KU Women's Tennis vs 2 Teams",
+        "url": "/event/ku-womens-tennis-vs-2-teams/31881/",
+        "categories": [
+          {
+            "catName": "College Sports",
+            "catId": "25"
+          }
+        ],
+        "listing": {
+          "primary_category": {
+            "primary": true,
+            "subcatid": 75,
+            "subcatname": "Sports Facility",
+            "catname": "Venues",
+            "catid": 4
+          },
+          "title": "Jayhawk Tennis Center",
+          "url": "/listing/jayhawk-tennis-center/6008/"
+        }
+      },
+      {
+        "_id": "6616c2814ce7d39ef5ce71a7",
+        "location": "Lawrence Public Library",
+        "date": "2024-04-13T04:59:59.000Z",
+        "startDate": "2024-04-12T05:00:00.000Z",
+        "endDate": "2024-04-13T04:59:59.000Z",
+        "recurType": 0,
+        "latitude": 38.9708958,
+        "longitude": -95.2375982,
+        "media_raw": [
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/LPL-Con-Hero-Image_5673584C-096D-1CE1-9565C5A0DA726F70_5685b1d2-e642-950a-c1de67c06588adc5.png",
+            "sortorder": 1,
+            "mediatype": "Image"
+          }
+        ],
+        "recid": "31866",
+        "title": "LPL Con - Teen Only",
+        "url": "/event/lpl-con-teen-only/31866/",
+        "categories": [
+          {
+            "catName": "Family",
+            "catId": "6"
+          },
+          {
+            "catName": "Literary",
+            "catId": "10"
+          }
+        ],
+        "listing": {
+          "primary_category": {
+            "primary": true,
+            "subcatid": 91,
+            "subcatname": "Arts & Culture",
+            "catname": "Attraction",
+            "catid": 2
+          },
+          "title": "Lawrence Public Library",
+          "url": "/listing/lawrence-public-library/58/"
+        }
+      },
+      {
+        "_id": "660fbac84ce7d39ef50e8f23",
+        "location": "The Bottleneck",
+        "date": "2024-04-13T04:59:59.000Z",
+        "startDate": "2024-04-12T05:00:00.000Z",
+        "endDate": "2024-04-13T04:59:59.000Z",
+        "recurType": 0,
+        "latitude": 38.9698369,
+        "longitude": -95.23495109999999,
+        "media_raw": [
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/noche_42DC4E91-02DB-6A18-579E90C52C6721A7_42e39f5e-0545-514c-345c5f15182af36d.jpg",
+            "sortorder": 1,
+            "mediatype": "Image"
+          }
+        ],
+        "recid": "32316",
+        "title": "NOCHE DE VERANO SIN TI IS BACK!",
+        "url": "/event/noche-de-verano-sin-ti-is-back!/32316/",
+        "categories": [
+          {
+            "catName": "Music",
+            "catId": "11"
+          }
+        ],
+        "listing": {
+          "primary_category": {
+            "primary": true,
+            "subcatid": 92,
+            "subcatname": "Live Music Venue",
+            "catname": "Attraction",
+            "catid": 2
+          },
+          "title": "The Bottleneck",
+          "url": "/listing/the-bottleneck/34/"
+        }
+      },
+      {
+        "_id": "661741094ce7d39ef5b1c94e",
+        "location": "Lied Center of Kansas",
+        "date": "2024-04-13T04:59:59.000Z",
+        "startDate": "2024-04-12T05:00:00.000Z",
+        "endDate": "2024-04-13T04:59:59.000Z",
+        "recurType": 0,
+        "latitude": 38.9550313,
+        "longitude": -95.2627812,
+        "media_raw": [
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/2324-HonoluluTheatre-feature_09A860F7-04B8-4A8C-8151BF0A06F32BBC_6b5ed2e0-9476-497c-b5789dcff93c9cdd.jpg",
+            "sortorder": 1,
+            "mediatype": "Image"
+          }
+        ],
+        "recid": "31610",
+        "title": "The Pa’akai We Bring—Honolulu Theatre for Youth",
+        "url": "/event/the-pa%e2%80%99akai-we-bring%e2%80%94honolulu-theatre-for-youth/31610/",
+        "categories": [
+          {
+            "catName": "Arts",
+            "catId": "2"
+          },
+          {
+            "catName": "Family",
+            "catId": "6"
+          },
+          {
+            "catName": "History",
+            "catId": "7"
+          },
+          {
+            "catName": "Music",
+            "catId": "11"
+          },
+          {
+            "catName": "Performance",
+            "catId": "14"
+          }
+        ],
+        "listing": {
+          "primary_category": {
+            "primary": true,
+            "subcatid": 91,
+            "subcatname": "Arts & Culture",
+            "catname": "Attraction",
+            "catid": 2
+          },
+          "title": "Lied Center of Kansas",
+          "url": "/listing/lied-center-of-kansas/22/"
+        }
+      },
+      {
+        "_id": "6618a0a34ce7d39ef5c5da6b",
+        "location": "Art Love Collective",
+        "date": "2024-04-13T04:59:59.000Z",
+        "startDate": "2024-04-12T05:00:00.000Z",
+        "endDate": "2024-04-13T04:59:59.000Z",
+        "recurType": 0,
+        "latitude": 38.9714626,
+        "longitude": -95.2368479,
+        "recid": "32296",
+        "title": "Tree of Life Art Workshop with Zoriana Lylo-Otkovych",
+        "url": "/event/tree-of-life-art-workshop-with-zoriana-lylo-otkovych/32296/",
+        "categories": [
+          {
+            "catName": "Arts",
+            "catId": "2"
+          }
+        ],
+        "listing": {
+          "primary_category": {
+            "primary": true,
+            "subcatid": 117,
+            "subcatname": "Art Museums and Galleries",
+            "catname": "Arts & Entertainment",
+            "catid": 24
+          },
+          "title": "Art Love Collective",
+          "url": "/listing/art-love-collective/7387/"
+        }
+      },
+      {
+        "_id": "661376b34ce7d39ef5a98b17",
+        "location": "Climb Lawrence",
+        "date": "2024-04-13T04:59:59.000Z",
+        "startDate": "2023-01-13T06:00:00.000Z",
+        "recurrence": "Recurring weekly on Friday",
+        "recurType": 3,
+        "latitude": 38.97069219999999,
+        "longitude": -95.2367008,
+        "media_raw": [
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/BBTV_BD7BBFBB-5056-BF65-D618B320B9A81E91_bd82a7fc-5056-bf65-d607724e728831ef.png",
+            "sortorder": 1,
+            "mediatype": "Image"
+          }
+        ],
+        "recid": "24308",
+        "title": "Boulder & Brews",
+        "url": "/event/boulder-%26-brews/24308/",
+        "categories": [
+          {
+            "catName": "Sports/Recreation",
+            "catId": "15"
+          }
+        ],
+        "listing": {
+          "primary_category": {
+            "primary": true,
+            "subcatid": 96,
+            "subcatname": "Things to do with Kids",
+            "catname": "Attraction",
+            "catid": 2
+          },
+          "title": "Climb Lawrence",
+          "url": "/listing/climb-lawrence/6020/"
+        }
+      },
+      {
+        "_id": "6611b5264ce7d39ef5a7016d",
+        "location": "Lawrence Public Library Reader's Theater",
+        "date": "2024-04-13T04:59:59.000Z",
+        "startDate": "2024-03-05T06:00:00.000Z",
+        "endDate": "2024-04-27T04:59:59.000Z",
+        "recurrence": "Recurring weekly on Tuesday, Thursday, Friday",
+        "recurType": 3,
+        "latitude": 38.9708958,
+        "longitude": -95.2375982,
+        "media_raw": [
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/images_FCA5870D-B9E0-B9DD-1E9A476D13B58BE5_fca6d1f2-af41-d9b2-6f076d3d4dc5c4db.png",
+            "sortorder": 1,
+            "mediatype": "Image"
+          }
+        ],
+        "recid": "32135",
+        "title": "Kids & Crafts Storytime",
+        "url": "/event/kids-%26-crafts-storytime/32135/",
+        "categories": [
+          {
+            "catName": "Family",
+            "catId": "6"
+          },
+          {
+            "catName": "Literary",
+            "catId": "10"
+          }
+        ],
+        "listing": {
+          "primary_category": {
+            "primary": true,
+            "subcatid": 91,
+            "subcatname": "Arts & Culture",
+            "catname": "Attraction",
+            "catid": 2
+          },
+          "title": "Lawrence Public Library",
+          "url": "/listing/lawrence-public-library/58/"
+        }
+      },
+      {
+        "_id": "6615c57b4ce7d39ef5664730",
+        "location": "Watkins Museum of History",
+        "date": "2024-04-13T04:59:59.000Z",
+        "startDate": "2023-08-25T05:00:00.000Z",
+        "endDate": "2024-05-12T04:59:59.000Z",
+        "recurrence": "Recurring weekly on Tuesday, Wednesday, Thursday, Friday, Saturday",
+        "recurType": 3,
+        "latitude": 38.9639972,
+        "longitude": -95.2364153,
+        "media_raw": [
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/David-Longhurst_F1E526EA-6282-4DCA-BC223ADE5BB7A2C3_422bc9ed-6983-4b6f-890cc1063c82245f.png",
+            "sortorder": 1,
+            "mediatype": "Image"
+          },
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/IMG_6360_6A714590-9FE3-4D92-AD551D42874A4311_a279b4a6-0b4e-4a46-9249207355aded6d.jpg",
+            "sortorder": 2,
+            "mediatype": "Image"
+          }
+        ],
+        "recid": "31053",
+        "title": "Soldiers Return: Coming Home from Vietnam",
+        "url": "/event/soldiers-return%3a-coming-home-from-vietnam/31053/",
+        "categories": [
+          {
+            "catName": "Arts",
+            "catId": "2"
+          },
+          {
+            "catName": "Exhibits",
+            "catId": "5"
+          },
+          {
+            "catName": "History",
+            "catId": "7"
+          }
+        ],
+        "listing": {
+          "primary_category": {
+            "primary": true,
+            "subcatid": 90,
+            "subcatname": "History & Heritage",
+            "catname": "Attraction",
+            "catid": 2
+          },
+          "title": "Watkins Museum of History",
+          "url": "/listing/watkins-museum-of-history/20/"
+        }
+      },
+      {
+        "_id": "66175d054ce7d39ef5868780",
+        "location": "True Barre Lawrence",
+        "date": "2024-04-13T04:59:59.000Z",
+        "startDate": "2024-04-01T05:00:00.000Z",
+        "endDate": "2024-05-01T04:59:59.000Z",
+        "recurrence": "Recurring weekly on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday",
+        "recurType": 3,
+        "latitude": 38.9558761,
+        "longitude": -95.3055947,
+        "media_raw": [
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/Screenshot-2024-03-26-154414_A8E21056-FC6E-4693-BEA515377884FA52_24289dce-fbcb-4d20-b626d0923696ca99.png",
+            "sortorder": 1,
+            "mediatype": "Image"
+          }
+        ],
+        "recid": "32295",
+        "title": "True Barre Bingo",
+        "url": "/event/true-barre-bingo/32295/",
+        "categories": [
+          {
+            "catName": "Other",
+            "catId": "13"
+          },
+          {
+            "catName": "Sports/Recreation",
+            "catId": "15"
+          },
+          {
+            "catName": "Wellness",
+            "catId": "17"
+          },
+          {
+            "catName": "Virtual Event",
+            "catId": "23"
+          }
+        ],
+        "listing": {
+          "primary_category": {
+            "primary": true,
+            "subcatid": 123,
+            "subcatname": "Gyms & Fitness Centers",
+            "catname": "Wellness",
+            "catid": 26
+          },
+          "title": "True Barre Lawrence",
+          "url": "/listing/true-barre-lawrence/7616/"
+        }
+      },
+      {
+        "_id": "661627ac4ce7d39ef593ce63",
+        "date": "2024-04-14T04:59:59.000Z",
+        "startDate": "2024-04-13T05:00:00.000Z",
+        "endDate": "2024-04-14T04:59:59.000Z",
+        "recurType": 0,
+        "latitude": 38.9664041,
+        "longitude": -95.2344167,
+        "media_raw": [
+          {
+            "mediaurl": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/lawrence/Screen-Shot-2024-01-22-at-1.20.42-PM_6338B139-B275-4305-887B08F3979CC083_7de9d203-7fee-4109-90909e43c5f2d555.png",
+            "sortorder": 1,
+            "mediatype": "Image"
+          }
+        ],
+        "recid": "31968",
+        "title": "2024 Annual Benefit Art Auction",
+        "url": "/event/2024-annual-benefit-art-auction/31968/",
+        "categories": [
+          {
+            "catName": "Arts",
+            "catId": "2"
+          },
+          {
+            "catName": "Exhibits",
+            "catId": "5"
+          },
+          {
+            "catName": "Shopping",
+            "catId": "16"
+          }
+        ]
+      }
+    ]
+  }
+}
