@@ -44,7 +44,7 @@ const SkeletonLineTwo = styled.div`
   background-color: rgb(63 63 70 / 1);
 `;
 
-const Skeleton = () => (
+const Skeleton = (): JSX.Element => (
   <SkeletonInner>
     <SkeletonImg />
     <SkeletonBtn />
@@ -52,8 +52,7 @@ const Skeleton = () => (
     <SkeletonLineTwo />
   </SkeletonInner>
 );
-
-export default function Page() {
+const Page = (): JSX.Element => {
   return (
     <div className="space-y-4">
       <h1 className="text-xl font-medium text-gray-400/80">
@@ -66,4 +65,6 @@ export default function Page() {
       </Container>
     </div>
   );
-}
+};
+
+export default Page;
