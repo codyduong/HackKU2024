@@ -43,8 +43,6 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
 
     --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
     --secondary-glow: linear-gradient(
@@ -86,18 +84,18 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: #fcffe2;
+  background: #232323;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
 }
 
 @media (prefers-color-scheme: dark) {
