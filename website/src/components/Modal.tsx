@@ -46,10 +46,10 @@ const Modal = (props: ModalProps): JSX.Element | null => {
   };
 
   // Get the modal base element
-  const modalBase: any = null;
+  let modalBase: any = null;
 
   if (typeof window !== 'undefined') {
-    const modalBase = document.getElementById('myElement');
+    modalBase = document.getElementById('modal');
     // Use 'element' here
   }
 
