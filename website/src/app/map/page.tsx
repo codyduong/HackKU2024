@@ -25,7 +25,6 @@ import SearchInput from '@/components/SearchInput';
 import CategoryFilters, { CATEGORIES } from './CategoryFilters';
 import chroma from 'chroma-js';
 import { FaLocationDot } from 'react-icons/fa6';
-import useRealtimeData from '@/hooks/useRealtimeData';
 
 // just a component to mount styling
 const SetMapStyle = (): null => {
