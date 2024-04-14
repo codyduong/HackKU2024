@@ -15,7 +15,7 @@ const NavbarBase = styled.div`
   height: 64px;
   z-index: 1000;
   position: sticky;
-  box-shadow: 0 4px 16px rgba(197, 255, 207, 0.05);
+  box-shadow: 0 4px 16px #9cc599;
   /* ${(props) =>
     props.map
       ? css`

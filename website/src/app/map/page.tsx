@@ -17,6 +17,7 @@ import type { Marker } from '@googlemaps/markerclusterer';
 import useSWR from 'swr';
 import { Events } from '@/types/events';
 import Sidebar from '@/components/Sidebar';
+import SearchInput from '@/components/SearchInput';
 
 // just a component to mount styling
 const SetMapStyle = (): null => {
@@ -110,8 +111,39 @@ const Markers = (props: MarkersProps): JSX.Element => {
   );
 };
 
+const EventsColumnBase = styled.div`
+  position: absolute;
+  width: 320px;
+  height: 100vh;
+  left: 64px;
+  display: flex;
+  flex-flow: column nowrap;
+  z-index: 5000;
+`;
+
+const EventsColumn = styled.ol`
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column nowrap;
+`;
+
+const EventItem = styled.ul`
+  width: 100%;
+`;
+
 // @ts-expect-error: blah
 const fetcher = (...args): any => fetch(...args).then((res) => res.json());
+
+const cityFetcher = async (url) => {
+  const response = await fetch(url);
+  const data = await response.json();
+  if (response.ok) {
+    return data.city;
+  } else {
+    throw new Error(data.error || 'Failed to fetch');
+  }
+};
 
 const MapWrapper = styled.div`
   width: 100%;
@@ -126,35 +158,71 @@ const MapPage = (): JSX.Element => {
   const { data, error, isLoading } = useSWR('/api/events?maps=true', fetcher);
   const [selectedEvents, setSelectedEvents] = useState<Events>([]);
 
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
+
   useEffect(() => {
     console.log(selectedEvents);
   }, [selectedEvents]);
 
+  const reverseGeocode = `/api/maps/city?lat=${lat}&lng=${lng}`;
+  const { data: location, error: locationError } = useSWR(
+    reverseGeocode,
+    cityFetcher,
+    { keepPreviousData: true, dedupingInterval: 1000 },
+  );
+
   // console.log(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
 
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
   return (
     <PageWrapper padContent={false} map>
       <Sidebar />
-      <MapWrapper>
-        <Map
-          mapId={'f4bfb03ea9696921'}
-          style={{ width: '100%', height: '100%', position: 'unset' }}
-          defaultCenter={{ lat: 38.95778830084053, lng: -95.25382396593233 }}
-          defaultZoom={16}
-          gestureHandling={'greedy'}
-          disableDefaultUI={true}
-          maxZoom={18}
-          // styles={dark}
-        >
-          <SetMapStyle />
-          <Markers
-            events={data as Events}
-            setSelectedEvents={setSelectedEvents}
-          />
-        </Map>
-      </MapWrapper>
+
+      {error && <>Failed to load</>}
+      {isLoading && <>Loading...</>}
+      {!error && !isLoading && (
+        <MapWrapper>
+          <Map
+            mapId={'f4bfb03ea9696921'}
+            style={{ width: '100%', height: '100%', position: 'unset' }}
+            defaultCenter={{ lat: 38.95778830084053, lng: -95.25382396593233 }}
+            defaultZoom={16}
+            gestureHandling={'greedy'}
+            disableDefaultUI={true}
+            maxZoom={18}
+            onDragend={(event) => {
+              setLat(event.map.getCenter()?.lat ?? 0);
+              setLng(event.map.getCenter()?.lng ?? 0);
+            }}
+            onClick={() => {
+              setSelectedEvents([]);
+            }}
+            // styles={dark}
+          >
+            <EventsColumnBase>
+              <SearchInput
+                placeholder={
+                  location
+                    ? `Search for events in ${location}`
+                    : 'Search events'
+                }
+              />
+              {selectedEvents.length > 0 && (
+                <EventsColumn>
+                  {selectedEvents.map((event) => (
+                    <EventItem key={event._id}>{event._id}</EventItem>
+                  ))}
+                </EventsColumn>
+              )}
+            </EventsColumnBase>
+            <SetMapStyle />
+            <Markers
+              events={data as Events}
+              setSelectedEvents={setSelectedEvents}
+            />
+          </Map>
+        </MapWrapper>
+      )}
     </PageWrapper>
   );
 };

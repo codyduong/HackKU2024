@@ -12,7 +12,7 @@ const ModalContainer = styled.div<{ visible?: 'true' }>`
   position: fixed; // or absolute, depending on your needs
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5); // example background
+  background-color: rgba(0, 0, 0, 0.25); // example background
   opacity: ${(props) => (props.visible ? 1 : 0)};
   visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
   transition:
