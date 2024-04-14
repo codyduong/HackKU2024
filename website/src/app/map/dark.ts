@@ -93,4 +93,9 @@ export default [
     elementType: 'geometry.stroke',
     stylers: [{ color: '#919191' }, { weight: 1 }],
   },
+  {
+    featureType: 'poi',
+    elementType: 'labels',
+    stylers: [{ visibility: 'off' }],
+  },
 ] as google.maps.MapTypeStyle[];
