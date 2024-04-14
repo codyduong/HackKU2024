@@ -11,13 +11,19 @@ import {
 } from '@vis.gl/react-google-maps';
 import styled from 'styled-components';
 import dark from './dark';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { MarkerClusterer } from '@googlemaps/markerclusterer';
-import type { Marker } from '@googlemaps/markerclusterer';
+import type {
+  Cluster,
+  ClusterStats,
+  Marker,
+} from '@googlemaps/markerclusterer';
 import useSWR from 'swr';
 import { Events } from '@/types/events';
 import Sidebar from '@/components/Sidebar';
 import SearchInput from '@/components/SearchInput';
+import CategoryFilters from './CategoryFilters';
+import chroma from 'chroma-js';
 
 // just a component to mount styling
 const SetMapStyle = (): null => {
@@ -31,6 +37,53 @@ const SetMapStyle = (): null => {
 
   return null;
 };
+
+const MarkerClusteredRenderer = {
+  render: (cluster: Cluster, stats: ClusterStats, map: google.maps.Map) => {
+    const count = cluster.count;
+
+    const c = chroma.scale(['#2aa230', '#4eacc1']);
+
+    const minValue = stats.clusters.markers.min;
+    const maxValue = stats.clusters.markers.max;
+    const logMin = Math.log(minValue);
+    const logMax = Math.log(maxValue);
+
+    const normalizedValue = (Math.log(count) - logMin) / (logMax - logMin);
+
+    const color = c(normalizedValue).hex();
+
+    // const color =
+    //   count > Math.max(10, stats.clusters.markers.mean) ? '#a22a2a' : ;
+
+    // create svg url with fill color
+    const svg = window.btoa(`
+        <svg fill="${color}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+          <circle cx="120" cy="120" opacity=".8" r="70" />
+          <circle cx="120" cy="120" opacity=".5" r="90" />
+          <circle cx="120" cy="120" opacity=".3" r="110" />
+          <circle cx="120" cy="120" opacity=".1" r="130" />
+        </svg>`);
+
+    const position = cluster.position;
+
+    // create marker using svg icon
+    return new google.maps.Marker({
+      position,
+      icon: {
+        url: `data:image/svg+xml;base64,${svg}`,
+        scaledSize: new google.maps.Size(45, 45),
+      },
+      label: {
+        text: String(count),
+        color: 'rgba(255,255,255,0.9)',
+        fontSize: '12px',
+      },
+      // adjust zIndex to be above other markers
+      zIndex: 1000 + count,
+    });
+  },
+} as const;
 
 interface MarkersProps {
   events: Events;
@@ -61,6 +114,7 @@ const Markers = (props: MarkersProps): JSX.Element => {
               .filter((n): n is NonNullable<typeof n> => !!n) ?? [],
           );
         },
+        renderer: MarkerClusteredRenderer,
       });
     }
   }, [map]);
@@ -86,9 +140,9 @@ const Markers = (props: MarkersProps): JSX.Element => {
     });
   };
 
-  return (
-    <>
-      {events.map((event) => {
+  const result = useMemo(
+    () =>
+      events.map((event) => {
         // console.log(event._id, event.latitude, event.longitude);
         return (
           <AdvancedMarker
@@ -100,25 +154,32 @@ const Markers = (props: MarkersProps): JSX.Element => {
             }}
           >
             <Pin
-              background={'#22ccff'}
-              borderColor={'#1e89a1'}
-              glyphColor={'#0f677a'}
+              background={'#39b356'}
+              borderColor={'#12651f'}
+              glyphColor={'#0c6854'}
             ></Pin>
           </AdvancedMarker>
         );
-      })}
-    </>
+      }),
+    [events],
   );
+
+  return <>{result}</>;
 };
 
 const EventsColumnBase = styled.div`
   position: absolute;
-  width: 320px;
+  width: 400px;
   height: 100vh;
   left: 64px;
   display: flex;
   flex-flow: column nowrap;
   z-index: 5000;
+
+  transition: background-color 0.225s ease-in-out;
+  &.events {
+    background-color: #505050;
+  }
 `;
 
 const EventsColumn = styled.ol`
@@ -126,16 +187,35 @@ const EventsColumn = styled.ol`
   flex-grow: 1;
   display: flex;
   flex-flow: column nowrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 const EventItem = styled.ul`
   width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-flow: column nowrap;
+`;
+
+const EventDescription = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+`;
+
+const EventImageWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .img {
+    max-width: 300px;
+  }
 `;
 
 // @ts-expect-error: blah
 const fetcher = (...args): any => fetch(...args).then((res) => res.json());
 
-const cityFetcher = async (url) => {
+const cityFetcher = async (url: any): Promise<string> => {
   const response = await fetch(url);
   const data = await response.json();
   if (response.ok) {
@@ -155,15 +235,37 @@ const MapWrapper = styled.div`
 `;
 
 const MapPage = (): JSX.Element => {
-  const { data, error, isLoading } = useSWR('/api/events?maps=true', fetcher);
   const [selectedEvents, setSelectedEvents] = useState<Events>([]);
+  const [search, setSearch] = useState('');
+  const [timeout, setTimeout] = useState<NodeJS.Timeout>();
+  const [searchDeduped, setSearchDeduped] = useState('');
 
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
+  const { data, error, isLoading } = useSWR('/api/events?maps=true', fetcher, {
+    keepPreviousData: true,
+    dedupingInterval: 1000,
+    revalidateOnMount: false,
+  });
+
+  const [lat, setLat] = useState(38.95778830084053);
+  const [lng, setLng] = useState(-95.25382396593233);
 
   useEffect(() => {
-    console.log(selectedEvents);
-  }, [selectedEvents]);
+    setTimeout((prev) => {
+      if (prev) {
+        clearTimeout(prev);
+      }
+      return setInterval(() => {
+        setSearchDeduped(search);
+      }, 250);
+    });
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [search]);
+
+  // useEffect(() => {
+  //   console.log(selectedEvents);
+  // }, [selectedEvents]);
 
   const reverseGeocode = `/api/maps/city?lat=${lat}&lng=${lng}`;
   const { data: location, error: locationError } = useSWR(
@@ -179,13 +281,13 @@ const MapPage = (): JSX.Element => {
       <Sidebar />
 
       {error && <>Failed to load</>}
-      {isLoading && <>Loading...</>}
-      {!error && !isLoading && (
+      {(isLoading || !data) && <>Loading...</>}
+      {!error && !isLoading && data && (
         <MapWrapper>
           <Map
             mapId={'f4bfb03ea9696921'}
             style={{ width: '100%', height: '100%', position: 'unset' }}
-            defaultCenter={{ lat: 38.95778830084053, lng: -95.25382396593233 }}
+            defaultCenter={{ lat, lng }}
             defaultZoom={16}
             gestureHandling={'greedy'}
             disableDefaultUI={true}
@@ -199,8 +301,14 @@ const MapPage = (): JSX.Element => {
             }}
             // styles={dark}
           >
-            <EventsColumnBase>
+            <EventsColumnBase
+              className={selectedEvents.length > 0 ? 'events' : ''}
+            >
               <SearchInput
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
                 placeholder={
                   location
                     ? `Search for events in ${location}`
@@ -210,11 +318,23 @@ const MapPage = (): JSX.Element => {
               {selectedEvents.length > 0 && (
                 <EventsColumn>
                   {selectedEvents.map((event) => (
-                    <EventItem key={event._id}>{event._id}</EventItem>
+                    <EventItem key={event._id}>
+                      <EventImageWrapper>
+                        <img src={event.media_raw[0].mediaurl} width={288} />
+                      </EventImageWrapper>
+
+                      <EventDescription>
+                        {/* <span>{event._id}</span> */}
+
+                        <span>{event.title}</span>
+                        <span>{event.location}</span>
+                      </EventDescription>
+                    </EventItem>
                   ))}
                 </EventsColumn>
               )}
             </EventsColumnBase>
+            <CategoryFilters search={search} setSearch={setSearch} />
             <SetMapStyle />
             <Markers
               events={data as Events}

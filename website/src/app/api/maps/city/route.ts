@@ -14,6 +14,13 @@ export async function GET(request: Request) {
     const lat = searchParams.get('lat');
     const lng = searchParams.get('lng');
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    // this breaks??? @codyduong
+    // if (lat == 0 || lng == 0) {
+    //   return NextResponse.json(
+    //     { error: 'Expected lat and lng parameters to be nonzero' },
+    //     { status: 400 },
+    //   );
+    // }
 
     const res = await fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`,

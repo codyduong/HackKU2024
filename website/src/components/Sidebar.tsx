@@ -64,7 +64,7 @@ const SidebarSliderBase = styled.div`
   background-color: #505050;
   transform: translateX(-320px);
   transition: transform 0.7s ease-in-out;
-  box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 4px 8px rgba(0, 0, 0, 0.5);
 
   &.open {
     transform: translateX(0px);
@@ -114,11 +114,14 @@ const SidebarSlider = (props: SidebarSlider): JSX.Element => {
       setIsInDOM(true);
     }
     if (!open) {
-      setTimeoutId(
-        setTimeout(() => {
+      setTimeoutId((prev) => {
+        if (prev) {
+          clearTimeout(prev);
+        }
+        return setTimeout(() => {
           setIsInDOM(false);
-        }, 700),
-      );
+        }, 700);
+      });
     }
     return () => {
       clearTimeout(timeoutId);
