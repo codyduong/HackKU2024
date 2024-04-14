@@ -16,15 +16,6 @@ const NavbarBase = styled.div`
   z-index: 1000;
   position: sticky;
   box-shadow: 0 4px 16px #9cc599;
-  /* ${(props) =>
-    props.map
-      ? css`
-          position: absolute;
-        `
-      : css`
-          position: sticky;
-          box-shadow: 0 4px 16px rgba(197, 255, 207, 0.116);
-        `} */
 `;
 
 const NavbarNav = styled.nav`

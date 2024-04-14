@@ -45,13 +45,13 @@ const Modal = (props: ModalProps): JSX.Element | null => {
     }
   };
 
-  // this breaks sometimes
-  if (!document) {
-    return null;
-  }
-
   // Get the modal base element
-  const modalBase = document.getElementById('modal');
+  const modalBase: any = null;
+
+  if (typeof window !== 'undefined') {
+    const modalBase = document.getElementById('myElement');
+    // Use 'element' here
+  }
 
   return modalBase
     ? createPortal(
