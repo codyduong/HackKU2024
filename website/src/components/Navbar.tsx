@@ -109,9 +109,9 @@ const Navbar = (props: NavbarProps): JSX.Element => {
               <NavbarLi>
                 <Link href="/map">Map</Link>
               </NavbarLi>
-              <NavbarLi>
+              {/* <NavbarLi>
                 <Link href="/events">Events</Link>
-              </NavbarLi>
+              </NavbarLi> */}
             </NavbarUl>
           </NavbarNav>
         </NavbarBase>

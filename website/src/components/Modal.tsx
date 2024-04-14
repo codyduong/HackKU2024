@@ -18,7 +18,7 @@ const ModalContainer = styled.div<{ visible?: 'true' }>`
   transition:
     opacity 0.5s ease,
     visibility 0.5s ease;
-  z-index: 100; // adjust as necessary
+  z-index: 1001; // adjust as necessary
 `;
 
 const ModalBase = styled.div`

@@ -29,21 +29,23 @@ const CategoryItem = styled.li`
   }
 `;
 
-const CATEGORIES = [
+export const CATEGORIES = [
   { name: 'Volunteer', ids: [99] },
   // @TODO
-  { name: 'Lectures/Education', ids: [] },
-  { name: 'Art/Exhibit', ids: [] },
-  { name: 'Food', ids: [] },
+  { name: 'Lectures/Education', ids: [31] },
+  { name: 'Art/Exhibit', ids: [2, 5] },
+  { name: 'Food', ids: [3, 21] },
+  { name: 'Health/Wellness', ids: [15, 17] },
 ] as const;
 
 interface CategoryFiltersProps {
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+  clearSelectedEvents: () => void;
 }
 
 const CategoryFilters = (props: CategoryFiltersProps): JSX.Element => {
-  const { search, setSearch } = props;
+  const { search, setSearch, clearSelectedEvents } = props;
 
   return (
     <CategoryFilter>
@@ -52,6 +54,7 @@ const CategoryFilters = (props: CategoryFiltersProps): JSX.Element => {
           key={cat.name}
           onClick={() => {
             setSearch(cat.name);
+            clearSelectedEvents();
           }}
         >
           {cat.name}

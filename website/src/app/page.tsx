@@ -5,13 +5,13 @@ import PageWrapper from '@/components/PageWrapper';
 import { signOut, signIn, useSession } from 'next-auth/react';
 import styled from 'styled-components';
 
-const PageContainer = styled.div`
+const PageContainer = styled.div<{ loaded: `${boolean}` }>`
   position: relative;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: ${({ loaded }) => (loaded ? '1' : '0')};
+  opacity: ${({ loaded }) => (loaded == 'true' ? '1' : '0')};
   transition: opacity 1s ease;
 `;
 
@@ -30,7 +30,7 @@ const Heading = styled.h1`
 `;
 
 const StyledButton = styled.button`
-  background-color: #9CC599;
+  background-color: #9cc599;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -41,7 +41,9 @@ const StyledButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 4px 6px rgba(50, 50, 93, 0.11),
+    0 1px 3px rgba(0, 0, 0, 0.08);
 
   &:hover {
     background-color: #346037;
@@ -60,7 +62,7 @@ const MainPage = (): JSX.Element => {
   }, []);
 
   return (
-    <PageContainer loaded={loaded}>
+    <PageContainer loaded={`${loaded}`}>
       <PageWrapper>
         <CenteredContent>
           <Heading>Connect, Serve, Illuminate</Heading>

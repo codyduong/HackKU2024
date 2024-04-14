@@ -22,8 +22,10 @@ import useSWR from 'swr';
 import { Events } from '@/types/events';
 import Sidebar from '@/components/Sidebar';
 import SearchInput from '@/components/SearchInput';
-import CategoryFilters from './CategoryFilters';
+import CategoryFilters, { CATEGORIES } from './CategoryFilters';
 import chroma from 'chroma-js';
+import { FaLocationDot } from 'react-icons/fa6';
+import useRealtimeData from '@/hooks/useRealtimeData';
 
 // just a component to mount styling
 const SetMapStyle = (): null => {
@@ -88,10 +90,11 @@ const MarkerClusteredRenderer = {
 interface MarkersProps {
   events: Events;
   setSelectedEvents: React.Dispatch<React.SetStateAction<Events>>;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Markers = (props: MarkersProps): JSX.Element => {
-  const { events, setSelectedEvents } = props;
+  const { events = [], setSelectedEvents, setSearch } = props;
 
   const map = useMap();
   const [markers, setMarkers] = useState<{ [key: string]: Marker }>({});
@@ -113,6 +116,7 @@ const Markers = (props: MarkersProps): JSX.Element => {
               ?.map((marker) => events.find((event) => event._id == marker.key))
               .filter((n): n is NonNullable<typeof n> => !!n) ?? [],
           );
+          setSearch('');
         },
         renderer: MarkerClusteredRenderer,
       });
@@ -142,25 +146,27 @@ const Markers = (props: MarkersProps): JSX.Element => {
 
   const result = useMemo(
     () =>
-      events.map((event) => {
-        // console.log(event._id, event.latitude, event.longitude);
-        return (
-          <AdvancedMarker
-            position={{ lat: event.latitude, lng: event.longitude }}
-            key={event._id}
-            ref={(marker) => setMarkerRef(marker, event._id)}
-            onClick={() => {
-              setSelectedEvents([event]);
-            }}
-          >
-            <Pin
-              background={'#39b356'}
-              borderColor={'#12651f'}
-              glyphColor={'#0c6854'}
-            ></Pin>
-          </AdvancedMarker>
-        );
-      }),
+      events
+        .filter((event) => event.latitude && event.longitude)
+        .map((event) => {
+          // console.log(event._id, event.latitude, event.longitude);
+          return (
+            <AdvancedMarker
+              position={{ lat: event.latitude, lng: event.longitude }}
+              key={event._id}
+              ref={(marker) => setMarkerRef(marker, event._id)}
+              onClick={() => {
+                setSelectedEvents([event]);
+              }}
+            >
+              <Pin
+                background={'#39b356'}
+                borderColor={'#12651f'}
+                glyphColor={'#0c6854'}
+              ></Pin>
+            </AdvancedMarker>
+          );
+        }),
     [events],
   );
 
@@ -212,6 +218,14 @@ const EventImageWrapper = styled.div`
   }
 `;
 
+const generateFilteredQuery = (search: string): string => {
+  const cat = CATEGORIES.find((cat) => cat.name === search);
+  if (cat) {
+    return `/api/events?map=true&${cat.ids.map((id) => `categories=${id}`).join('&')}`;
+  }
+  return `/api/events?map=true&search=${search}`;
+};
+
 // @ts-expect-error: blah
 const fetcher = (...args): any => fetch(...args).then((res) => res.json());
 
@@ -237,31 +251,25 @@ const MapWrapper = styled.div`
 const MapPage = (): JSX.Element => {
   const [selectedEvents, setSelectedEvents] = useState<Events>([]);
   const [search, setSearch] = useState('');
-  const [timeout, setTimeout] = useState<NodeJS.Timeout>();
-  const [searchDeduped, setSearchDeduped] = useState('');
-
   const { data, error, isLoading } = useSWR('/api/events?maps=true', fetcher, {
     keepPreviousData: true,
     dedupingInterval: 1000,
     revalidateOnMount: false,
   });
+  const {
+    data: data2,
+    error: error2,
+    isLoading: isLoading2,
+  } = useSWR(
+    search.trim() !== '' ? generateFilteredQuery(search) : null,
+    fetcher,
+    {
+      dedupingInterval: 250,
+    },
+  );
 
   const [lat, setLat] = useState(38.95778830084053);
   const [lng, setLng] = useState(-95.25382396593233);
-
-  useEffect(() => {
-    setTimeout((prev) => {
-      if (prev) {
-        clearTimeout(prev);
-      }
-      return setInterval(() => {
-        setSearchDeduped(search);
-      }, 250);
-    });
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [search]);
 
   // useEffect(() => {
   //   console.log(selectedEvents);
@@ -275,6 +283,10 @@ const MapPage = (): JSX.Element => {
   );
 
   // console.log(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
+
+  // console.log(data2);
+
+  const chosenEvents: Events = data2 ? data2 : selectedEvents;
 
   return (
     <PageWrapper padContent={false} map>
@@ -298,11 +310,14 @@ const MapPage = (): JSX.Element => {
             }}
             onClick={() => {
               setSelectedEvents([]);
+              if (search.trim() !== '') {
+                setSearch('');
+              }
             }}
             // styles={dark}
           >
             <EventsColumnBase
-              className={selectedEvents.length > 0 ? 'events' : ''}
+              className={chosenEvents.length > 0 ? 'events' : ''}
             >
               <SearchInput
                 value={search}
@@ -315,30 +330,41 @@ const MapPage = (): JSX.Element => {
                     : 'Search events'
                 }
               />
-              {selectedEvents.length > 0 && (
+              {chosenEvents.length > 0 && (
                 <EventsColumn>
-                  {selectedEvents.map((event) => (
+                  {chosenEvents.map((event) => (
                     <EventItem key={event._id}>
-                      <EventImageWrapper>
-                        <img src={event.media_raw[0].mediaurl} width={288} />
-                      </EventImageWrapper>
+                      {event?.media_raw?.[0]?.mediaurl && (
+                        <EventImageWrapper>
+                          <img src={event.media_raw[0].mediaurl} width={288} />
+                        </EventImageWrapper>
+                      )}
 
                       <EventDescription>
                         {/* <span>{event._id}</span> */}
 
                         <span>{event.title}</span>
-                        <span>{event.location}</span>
+                        <span>
+                          <FaLocationDot /> {event.location}
+                        </span>
                       </EventDescription>
                     </EventItem>
                   ))}
                 </EventsColumn>
               )}
             </EventsColumnBase>
-            <CategoryFilters search={search} setSearch={setSearch} />
+            <CategoryFilters
+              search={search}
+              setSearch={setSearch}
+              clearSelectedEvents={() => {
+                setSelectedEvents([]);
+              }}
+            />
             <SetMapStyle />
             <Markers
               events={data as Events}
               setSelectedEvents={setSelectedEvents}
+              setSearch={setSearch}
             />
           </Map>
         </MapWrapper>

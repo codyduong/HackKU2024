@@ -5,6 +5,7 @@ const SearchInputBase = styled.input`
   border-radius: 32px;
   padding: 8px;
   margin: 16px 24px;
+  font: inherit;
 `;
 
 interface SearchInputProps

@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import IconButton from './IconButton';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { IoCloseSharp } from 'react-icons/io5';
+import { IoAdd, IoCloseSharp } from 'react-icons/io5';
+import UploadModal from './UploadModal';
 
 const SliderbarSliderItem = styled.li`
   width: 100%;
@@ -42,9 +43,9 @@ const LogoWrapper = styled.button`
   }
 `;
 
-const Logo = styled.h1`
-  font-weight: 700;
-`;
+// const Logo = styled.img`
+
+// `;
 
 const SliderbarSliderUl = styled.ul`
   flex-grow: 1;
@@ -63,10 +64,10 @@ const SidebarSliderBase = styled.div`
   align-items: center;
   background-color: #505050;
   transform: translateX(-320px);
-  transition: transform 0.7s ease-in-out;
-  box-shadow: 0px 0px 4px 8px rgba(0, 0, 0, 0.5);
+  transition: all 0.7s ease-in-out;
 
   &.open {
+    box-shadow: 0px 0px 4px 8px rgba(0, 0, 0, 0.5);
     transform: translateX(0px);
   }
 `;
@@ -148,7 +149,13 @@ const SidebarSlider = (props: SidebarSlider): JSX.Element => {
           <SliderbarSliderUl>
             <SliderbarSliderMain>
               <LogoWrapper>
-                <Logo />
+                {/* <Image
+                  src="/beacon board.png"
+                  alt="Beacon Board Logo"
+                  width={96}
+                  height={96}
+                  priority
+                /> */}
               </LogoWrapper>
               <IconButton2
                 icon={<IoCloseSharp x={32} y={32} size={32} />}
@@ -158,9 +165,9 @@ const SidebarSlider = (props: SidebarSlider): JSX.Element => {
             <SliderbarSliderItem>
               <Link href="/">Home</Link>
             </SliderbarSliderItem>
-            <SliderbarSliderItem>
+            {/* <SliderbarSliderItem>
               <Link href="/events">Events</Link>
-            </SliderbarSliderItem>
+            </SliderbarSliderItem> */}
           </SliderbarSliderUl>
         )}
       </SidebarSliderBase>
@@ -179,18 +186,25 @@ const SidebarBase = styled.div`
   align-items: center;
   padding: 16px 8px;
   box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.5);
+  gap: 16px;
 `;
 
 const Sidebar = (): JSX.Element => {
   const [open, setOpen] = useState(false);
+  const [addOpen, setAddOpen] = useState(false);
 
   return (
     <>
+      <UploadModal visible={addOpen} setVisible={setAddOpen} />
       <SidebarSlider open={open} setOpen={setOpen} />
       <SidebarBase>
         <IconButton
           icon={<GiHamburgerMenu x={32} y={32} size={32} />}
           onClick={() => setOpen((prev) => !prev)}
+        />
+        <IconButton
+          icon={<IoAdd x={32} y={32} size={32} />}
+          onClick={() => setAddOpen((prev) => !prev)}
         />
       </SidebarBase>
     </>

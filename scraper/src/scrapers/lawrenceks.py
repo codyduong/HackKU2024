@@ -61,22 +61,22 @@ def __build_url(token: str, start_date: datetime, end_date: datetime) -> str:
 
 def lawrenceks() -> None:  
   # SAMPLE CATEGORIES
-  # Family (12)
-  # Music (12)
-  # Lectures/Education (10)
+  # Family (12)                     id 6
+  # Music (12)                      id 11
+  # Lectures/Education (10)         id 31
   # Literary (9)
   # Other (9)
-  # Arts (7)
-  # Exhibits (7)
+  # Arts (7)                        id 2
+  # Exhibits (7)                    id 5
   # History (6)
-  # Sports/Recreation (6)
+  # Sports/Recreation (6)           id 15
   # Agri-Tourism (4)
   # Performance (4)
-  # Festival (3)
-  # Food (3)
+  # Festival (3)                     
+  # Food (3)                        id 3
   # Shopping (3)
-  # Farmers Market (2)
-  # Wellness (2)
+  # Farmers Market (2)              id 21
+  # Wellness (2)                    id 17
   # College Sports (1)
   # Film (1)
   # Native American Culture (1)
