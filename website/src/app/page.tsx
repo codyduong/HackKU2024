@@ -30,7 +30,7 @@ const Heading = styled.h1`
 `;
 
 const StyledButton = styled.button`
-  background-color: #4169e1;
+  background-color: #9CC599;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -44,7 +44,7 @@ const StyledButton = styled.button`
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 
   &:hover {
-    background-color: #3559b3;
+    background-color: #346037;
   }
 `;
 
@@ -63,7 +63,7 @@ const MainPage = (): JSX.Element => {
     <PageContainer loaded={loaded}>
       <PageWrapper>
         <CenteredContent>
-          <Heading>Connect, Congregate, Convene.</Heading>
+          <Heading>Connect, Serve, Illuminate</Heading>
 
           {session ? (
             <>
@@ -80,7 +80,7 @@ const MainPage = (): JSX.Element => {
             </>
           ) : (
             <>
-              <span>Sign in to Convene now </span>
+              <span>Welcome to Beacon Board </span>
               <ButtonContainer>
                 <StyledButton
                   onClick={() => {
