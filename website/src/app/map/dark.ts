@@ -46,7 +46,12 @@ export default [
   },
   {
     elementType: 'labels.text.stroke',
-    stylers: [{ color: '#FFFFFF' }, { visibility: 'on' }, { weight: 1 }, { opacity: 0.6 }],
+    stylers: [
+      { color: '#FFFFFF' },
+      { visibility: 'on' },
+      { weight: 1 },
+      { opacity: 0.6 },
+    ],
   },
   {
     elementType: 'labels.text.fill',
@@ -66,7 +71,7 @@ export default [
   {
     featureType: 'administrative',
     elementType: 'geometry',
-    stylers: [{ color: '#D6D6D6' }, { weight: 0.5 }],
+    stylers: [{ color: '#D6D6D6' }, { weight: 1 }],
   },
   {
     featureType: 'road',
@@ -76,16 +81,16 @@ export default [
   {
     featureType: 'road.local',
     elementType: 'geometry.stroke',
-    stylers: [{ color: '#919191' }, { weight: .5 }],
+    stylers: [{ color: '#919191' }, { weight: 1 }],
   },
   {
     featureType: 'road.arterial',
     elementType: 'geometry.stroke',
-    stylers: [{ color: '#919191' }, { weight: .5 }],
+    stylers: [{ color: '#919191' }, { weight: 1 }],
   },
   {
     featureType: 'road.highway',
     elementType: 'geometry.stroke',
-    stylers: [{ color: '#919191' }, { weight: .5 }],
+    stylers: [{ color: '#919191' }, { weight: 1 }],
   },
 ] as google.maps.MapTypeStyle[];
