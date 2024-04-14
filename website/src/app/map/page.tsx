@@ -25,6 +25,7 @@ import SearchInput from '@/components/SearchInput';
 import CategoryFilters, { CATEGORIES } from './CategoryFilters';
 import chroma from 'chroma-js';
 import { FaLocationDot } from 'react-icons/fa6';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 // just a component to mount styling
 const SetMapStyle = (): null => {
@@ -247,6 +248,16 @@ const MapWrapper = styled.div`
   }
 `;
 
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+  // Create a formatter
+  const formatter = new Intl.DateTimeFormat('en-US', options);
+
+  return formatter.format(date);
+}
+
 const MapPage = (): JSX.Element => {
   const [selectedEvents, setSelectedEvents] = useState<Events>([]);
   const [search, setSearch] = useState('');
@@ -341,11 +352,23 @@ const MapPage = (): JSX.Element => {
 
                       <EventDescription>
                         {/* <span>{event._id}</span> */}
-
-                        <span>{event.title}</span>
-                        <span>
-                          <FaLocationDot /> {event.location}
-                        </span>
+                        {event.url ? (
+                          // LOL!
+                          <a
+                            href={`https://www.explorelawrence.com${event.url}`}
+                            rel="noreferrer"
+                          >
+                            <FaExternalLinkAlt /> {event.title}
+                          </a>
+                        ) : (
+                          <span>{event.title}</span>
+                        )}
+                        {event.location && (
+                          <span>
+                            <FaLocationDot /> {event.location}
+                          </span>
+                        )}
+                        {event.date && <span>{formatDate(event.date)}</span>}
                       </EventDescription>
                     </EventItem>
                   ))}
