@@ -248,12 +248,12 @@ const MapWrapper = styled.div`
   }
 `;
 
-function formatDate(dateString) {
+function formatDate(dateString: any) {
   const date = new Date(dateString);
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
   // Create a formatter
-  const formatter = new Intl.DateTimeFormat('en-US', options);
+  const formatter = new Intl.DateTimeFormat('en-US', options as any);
 
   return formatter.format(date);
 }
